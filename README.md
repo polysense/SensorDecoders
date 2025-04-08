@@ -2,7 +2,7 @@
 
 Sample Functions for Polysense IoT Device Encoders and ecoders
 
-Decoder. js is a universal decoding tool that includes all sensors supported by polysense.
+Decoder.js is a universal decoding tool that includes all sensors supported by polysense.
 
 You can refer to the sensorList variable under the polyssenseDevicedecode function
 
