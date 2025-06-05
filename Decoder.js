@@ -51,6 +51,7 @@ function polysenseDevicedecode(bytes) {
         ]},
         "0a": {length: 2, isUnsigned: true,  factor: 1,   toFixed: 0, isFloat: false, hasChild: false, key:"co", remark:"CO", unit:"ppb"},
         "0b": {length: 2, isUnsigned: true,  factor: 1,   toFixed: 0, isFloat: false, hasChild: false, key:"ext_mv", remark:"Voltage of ADC Sampling", unit:"mv"},
+        "0c": {length: 1, isUnsigned: true,  factor: 1,   toFixed: 0, isFloat: false, hasChild: false, key:"io_state", remark:"IO state", unit:""},
         "0d": {length: 4, isUnsigned: true,  factor: 1,   toFixed: 0, isFloat: false, hasChild: false, key:"ap_pa", remark:"atmosphere pressure", unit:"pa"},
         "0e": {length: 2, isUnsigned: false, factor: 0.1, toFixed: 1, isFloat: false, hasChild: false, key:"ext_temp", remark:"ext_temp", unit:"°C"},
         "0f": {length: 2, isUnsigned: true,  factor: 0.01,toFixed: 2, isFloat: false, hasChild: false, key:"displacement", remark:"displacement", unit:"mm"},
@@ -152,6 +153,15 @@ function polysenseDevicedecode(bytes) {
         "72": {length: 4, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"muil_format", remark:"Multi sub-type format", unit:""},
         "73": {length: 4, isUnsigned: false, factor: 0.001, toFixed: 0, isFloat: false, hasChild: false, key:"flow_speed_per_miniute", remark:"Minute based Flow speed", unit:"L/min"},
         "78": {length: -1, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"ssid_rssi", remark:"SSID+RSSI（Variable Length Payload format）", unit:"", diyLength: "", diyLengthHex:""},
+        "80": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"pm_tsp", remark:"PM TSP", unit:"ug/m³"},
+        "81": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_0_3um", remark:"Particles > 0.3um", unit:"pcs/L"},
+        "82": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_0_5um", remark:"Particles > 0.5um", unit:"pcs/L"},
+        "83": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_1_0um", remark:"Particles > 1.0um", unit:"pcs/L"},
+        "84": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_2_5um", remark:"Particles > 2.5um", unit:"pcs/L"},
+        "85": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_10um", remark:"Particles > 5.0um", unit:"pcs/L"},
+        "86": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_10um", remark:"Particles > 10um", unit:"pcs/L"},
+        "87": {length: 4, isUnsigned: false, factor: 1, 	toFixed: 2, isFloat: true, 	hasChild: false, key:"high-res_distance", remark:"HIGH-RES Distance", unit:"mm"},
+        
     }
 
     //payload: e.g. D77E14FF0A005C
