@@ -29,6 +29,9 @@ function Decoder(bytes, port) {
  */
 function polysenseDevicedecode(bytes) {
     var objRet = {};
+
+    //objRet.timestamp = new Date().getTime();
+    
     var sensorList = {
         "01": {length: 2, isUnsigned: false, factor: 0.1, toFixed: 1, isFloat: false, hasChild: false, key:"tmp", remark:"tmp", unit:"°C"},
         "02": {length: 1, isUnsigned: true,  factor: 1,   toFixed: 0, isFloat: false, hasChild: false, key:"ehum", remark:"humidity", unit:"%"},
@@ -101,6 +104,7 @@ function polysenseDevicedecode(bytes) {
             {start: 0, length: 7, key:"leak_state_count", remark:"leak state counter"},
             {start: 7, length: 1, key:"leak_state", remark:"leak state"},	
         ]},
+        "39": {length: 2, isUnsigned: true,  factor: 1,   toFixed: 0, isFloat: false, hasChild: false, key:"ch2o", remark:"CH₂O", unit:"mg/m³"},
         "3b": {length: 2, isUnsigned: true,  factor: 1,   toFixed: 0, isFloat: false, hasChild: false, key:"voc", remark:"VOC", unit:"ug/m³"},
         "3d": {length: 2, isUnsigned: true,  factor: 0.1, toFixed: 1, isFloat: false, hasChild: false, key:"o2", remark:"O₂", unit:"%"},
         "3f": {length: 4, isUnsigned: false, factor: 1,   toFixed: 3, isFloat: true,  hasChild: false, key:"vac", remark:"Voltage", unit:"V"},
