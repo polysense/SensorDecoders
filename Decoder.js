@@ -157,6 +157,13 @@ function polysenseDevicedecode(bytes) {
         "72": {length: 4, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"muil_format", remark:"Multi sub-type format", unit:""},
         "73": {length: 4, isUnsigned: false, factor: 0.001, toFixed: 0, isFloat: false, hasChild: false, key:"flow_speed_per_miniute", remark:"Minute based Flow speed", unit:"L/min"},
         "78": {length: -1, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"ssid_rssi", remark:"SSID+RSSI（Variable Length Payload format）", unit:"", diyLength: "", diyLengthHex:""},
+        "79": {length: 2, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"uvi", remark:"uvi", unit:"uvi"},
+        "7a": {length: 2, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"gust_speed", englishName:"gust speed", unit:"mm/s"},
+		"7b": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"postive_total_flow", englishName:"Postive total flow", unit:"m³"},
+        "7c": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"flow_heat", englishName:"Flow heat", unit:"GJ/hour"},
+        "7d": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"flow_speed", englishName:"Flow speed(m/s)", unit:"m/s"},
+        "7e": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"postive_total_flow_heat", englishName:"Postive total flow heat", unit:"GJ"},
+        "7f": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"negative_total_flow", englishName:"Negative total flow", unit:"m³"},
         "80": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"pm_tsp", remark:"PM TSP", unit:"ug/m³"},
         "81": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_0_3um", remark:"Particles > 0.3um", unit:"pcs/L"},
         "82": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_0_5um", remark:"Particles > 0.5um", unit:"pcs/L"},
@@ -165,7 +172,15 @@ function polysenseDevicedecode(bytes) {
         "85": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_10um", remark:"Particles > 5.0um", unit:"pcs/L"},
         "86": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"particles_10um", remark:"Particles > 10um", unit:"pcs/L"},
         "87": {length: 4, isUnsigned: false, factor: 1, 	toFixed: 2, isFloat: true, 	hasChild: false, key:"high-res_distance", remark:"HIGH-RES Distance", unit:"mm"},
-        
+        "88": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"negative_total_flow_heat", remark:"Negative total flow heat", unit:"GJ"},
+        "89": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"net_total_flow", remark:"Net total flow", unit:"m³"},
+        "8a": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"net_total_flow_heat", remark:"Net total flow heat", unit:"m³"},
+        "8b": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"supply_water_temp", remark:"Supply water temp", unit:"°"},
+        "8c": {length: 4, isUnsigned: true,  factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"return_water_temp", remark:"Return water temp", unit:"°"},
+        "8d": {length: 4, isUnsigned: true,  factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"rfid", name:"RFID", remark:"RFID", unit:""},
+        "8e": {length: 2, isUnsigned: true,  factor: 1,     toFixed: 0, isFloat: false, hasChild: false, key:"NO₂", remark:"NO₂", remark:"NO₂", unit:"ppm"},
+        "8f": {length: 2, isUnsigned: true,  factor: 1,     toFixed: 0, isFloat: false, hasChild: false, key:"NO", name:"NO", remark:"NO", unit:"ppm"},
+				
     }
 
     //payload: e.g. D77E14FF0A005C
