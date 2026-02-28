@@ -21,6 +21,22 @@ function Decoder(bytes, port) {
     return polysenseDevicedecode(bytes);
 }
 
+// Aws lambda
+export const handler = async (event) => {
+  let data_base64 = event.PayloadData;
+  let data_decoded = Buffer.from(data_base64, 'base64');
+  
+  let result = {
+      'devEui': event.WirelessMetadata.LoRaWAN.DevEui,
+      'fPort': event.WirelessMetadata.LoRaWAN.FPort,
+      'freq': event.WirelessMetadata.LoRaWAN.Frequency,
+      'timestamp': event.WirelessMetadata.LoRaWAN.Timestamp,
+      'payloadHex': data_decoded.toString('hex'),
+      'payloadData': polysenseDevicedecode(new Uint8Array(data_decoded)),
+  };
+
+  return result;
+};
 
 /**
  * decode payload
