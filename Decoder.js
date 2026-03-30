@@ -1,7 +1,7 @@
 /**
  * Payload Decoder
  *
- * Copyright 2025 Polysense Tech
+ * Copyright 2026 Polysense Tech
  *
  * @product Common
  */
@@ -24,20 +24,30 @@ function Decoder(bytes, port) {
 // Aws lambda
 // If it's not on the AWS platform, you must comment out this code, otherwise it may result in an error
 export const handler = async (event) => {
-  let data_base64 = event.PayloadData;
-  let data_decoded = Buffer.from(data_base64, 'base64');
-  
-  let result = {
-      'devEui': event.WirelessMetadata.LoRaWAN.DevEui,
-      'fPort': event.WirelessMetadata.LoRaWAN.FPort,
-      'freq': event.WirelessMetadata.LoRaWAN.Frequency,
-      'timestamp': event.WirelessMetadata.LoRaWAN.Timestamp,
-      'payloadHex': data_decoded.toString('hex'),
-      'payloadData': polysenseDevicedecode(new Uint8Array(data_decoded)),
-  };
-
-  return result;
+    return polysenseToAWS(event);
 };
+
+
+/**
+ * Aws lambda decode
+ * @param event 
+ * @return Decoded object
+ */
+function polysenseToAWS(event){
+    let data_base64 = event.PayloadData;
+    let data_decoded = Buffer.from(data_base64, 'base64');
+  
+    let result = {
+        'devEui': event.WirelessMetadata.LoRaWAN.DevEui,
+        'fPort': event.WirelessMetadata.LoRaWAN.FPort,
+        'freq': event.WirelessMetadata.LoRaWAN.Frequency,
+        'timestamp': event.WirelessMetadata.LoRaWAN.Timestamp,
+        'payloadHex': data_decoded.toString('hex'),
+        'payloadData': polysenseDevicedecode(new Uint8Array(data_decoded)),
+    };
+
+    return result;
+}
 
 /**
  * decode payload
@@ -243,7 +253,8 @@ function polysenseDevicedecode(bytes) {
                             if(info.start <= binaryArray.length) {
                                 var thisDataArr = binaryArray.slice(info.start, info.start + info.length);
                                 thisDataArr.reverse();
-                                objRet[info.key] = parseInt(thisDataArr.join(''), 2);
+                                var currentTmpValue = parseInt(thisDataArr.join(''), 2);
+                                this.setValue(objRet, info.key, currentTmpValue);
                             }else{
                                 objRet[info.key] = 0;
                             }
@@ -294,6 +305,23 @@ function polysenseDevicedecode(bytes) {
     return objRet
 }
 
+//--------------------------------------------
+// set value
+//--------------------------------------------
+function setValue(objRet, key, value){
+    if (objRet.hasOwnProperty(key)) {
+        // 属性已存在
+        if (!Array.isArray(objRet[key])) {
+            // 当前值不是数组，先转为数组
+            objRet[key] = [objRet[key]];
+        }
+        // 追加新值
+        objRet[key].push(value);
+    } else {
+        // 属性不存在，直接赋值
+        objRet[key] = value;
+    }
+}
 
 
 //--------------------------------------------
