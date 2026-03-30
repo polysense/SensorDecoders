@@ -22,6 +22,7 @@ function Decoder(bytes, port) {
 }
 
 // Aws lambda
+// If it's not on the AWS platform, you must comment out this code, otherwise it may result in an error
 export const handler = async (event) => {
   let data_base64 = event.PayloadData;
   let data_decoded = Buffer.from(data_base64, 'base64');
@@ -172,6 +173,11 @@ function polysenseDevicedecode(bytes) {
         "71": {length: 4, isUnsigned: false, factor: 0.001, toFixed: 3, isFloat: false, hasChild: false, key:"r_velocity_volume", remark:"Reversed velocity volum", unit:"m³"},
         "72": {length: 4, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"muil_format", remark:"Multi sub-type format", unit:""},
         "73": {length: 4, isUnsigned: false, factor: 0.001, toFixed: 0, isFloat: false, hasChild: false, key:"flow_speed_per_miniute", remark:"Minute based Flow speed", unit:"L/min"},
+        "75": {length: 4, isUnsigned: true,  factor: 1,    toFixed: 0, isFloat: false, hasChild: true, key:"state", remark:"IO State (Generic)", unit:"", isBit: true, children: [
+            {start: 0, length: 28, key:"io_state_count", remark:"IO state counter"},
+            {start: 28, length: 3, key:"io_id", remark:"Id"},
+            {start: 31, length: 1, key:"io_state", remark:"IO state"},
+        ]},
         "78": {length: -1, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"ssid_rssi", remark:"SSID+RSSI（Variable Length Payload format）", unit:"", diyLength: "", diyLengthHex:""},
         "79": {length: 2, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"uvi", remark:"uvi", unit:"uvi"},
         "7a": {length: 2, isUnsigned: false, factor: 1, 	toFixed: 0, isFloat: false, hasChild: false, key:"gust_speed", englishName:"gust speed", unit:"mm/s"},
